@@ -1,6 +1,6 @@
---
+---
 title: Deep Research
---
+---
 
 ## Framework
 
