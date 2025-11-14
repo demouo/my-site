@@ -13,6 +13,9 @@ jobs:
     # 运行环境
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       # 第一步：检出你的源码仓库
       - name: Checkout 🛎️
