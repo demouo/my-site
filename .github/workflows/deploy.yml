@@ -46,7 +46,7 @@ jobs:
 
           # 【重要】指定要推送到的【部署仓库】
           # 格式：<你的用户名>/<你的用户名>.github.io
-          external_repository: demouo/demouo.github.io
+          external_repository: demouo/my-site
 
           # 【重要】指定【部署仓库】的目标分支
           # 注意：your-username.github.io 仓库通常使用 main 或 master 作为 Pages 源
