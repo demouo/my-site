@@ -38,29 +38,18 @@ jobs:
 
       # 第五步：部署到 GitHub Pages
       - name: Deploy to GitHub Pages 🚀
-        # 使用一个非常流行的 GitHub Action 插件
         uses: peaceiris/actions-gh-pages@v3
         with:
-          # GITHUB_TOKEN 是由 GitHub Actions 自动创建的，你无需设置
+          # 使用 GITHUB_TOKEN，因为我们是推送到 *当前* 仓库
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-          # 【重要】指定要推送到的【部署仓库】
-          # 格式：<你的用户名>/<你的用户名>.github.io
-          external_repository: demouo/my-site
-
-          # 【重要】指定【部署仓库】的目标分支
-          # 注意：your-username.github.io 仓库通常使用 main 或 master 作为 Pages 源
-          publish_branch: main 
-
-          # Hexo 生成的静态文件默认在 public 目录
+          
+          # 【重要】指定部署到 gh-pages 分支
+          # Action 会自动创建这个分支
+          publish_branch: gh-pages
+          
+          # Hexo 生成的静态文件在 public 目录
           publish_dir: ./public
-
-          # （可选）自定义 CNAME
-          # cname: your-domain.com
-
-          # （可选）部署提交的作者信息
+          
+          # 提交作者信息
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-
-          # （可选）允许推送空提交，确保分支存在
-          allow_empty_commit: true
