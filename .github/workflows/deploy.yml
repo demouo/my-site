@@ -1,11 +1,9 @@
-# .github/workflows/deploy.yml
 name: Build and Deploy Hexo site
 
 on:
   push:
-    branches:
-      - main    # 当你推送 main 分支时触发（可改成你常用分支）
-  workflow_dispatch: {}  # 手动触发也可
+    branches: [ main ]
+  workflow_dispatch: {}
 
 jobs:
   build-and-deploy:
@@ -14,30 +12,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '18'   # 根据需要设置 Node 版本
+          node-version: '20.19.0'    # hexo@8 要求 >= 20.19.0
 
-      - name: Cache node modules
+      - name: Cache npm
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('my-site/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
       - name: Install dependencies
+        working-directory: ./my-site      # <- 指向你的 hexo 子目录
         run: npm install
 
       - name: Generate site (hexo generate)
-        run: npm run build
+        working-directory: ./my-site
+        run: npm run build                # 确保 package.json 中有 "build": "hexo generate"
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./my-site/public   # <- 指向生成的静态文件
           publish_branch: gh-pages
-          # optional: keep_files: true
 
