@@ -11,3 +11,7 @@ title: Deep Research
 - Qwen-Flash
 - Qwen-Plus
 
+## Tutorial
+
+[nano-deep-research-agent](https://github.com/demouo/nano_deep_research_agent)
+
