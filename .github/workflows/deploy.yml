@@ -1,4 +1,4 @@
-# 工作流名称
+# 工作流名
 name: Deploy Hexo to GitHub Pages
 
 # 触发条件：当 push 到 main 分支时触发
@@ -34,7 +34,7 @@ jobs:
 
       # 第四步：生成静态文件
       - name: Generate Static Files 📝
-        run: hexo generate
+        run: npx hexo generate
 
       # 第五步：部署到 GitHub Pages
       - name: Deploy to GitHub Pages 🚀
