@@ -1,5 +1,5 @@
 ---
-Title: Team work we need
+title: Team work we need
 ---
 
 ## Why
